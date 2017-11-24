@@ -33,3 +33,6 @@ while read -r fn; do
     validate_xmp ${fn}
 done < ${file_list}
 
+# perform the main extraction on the XMP files
+#python extract.py -f ${file_list}
+
