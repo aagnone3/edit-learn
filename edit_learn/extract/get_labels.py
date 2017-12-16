@@ -93,23 +93,31 @@ def xmp_to_vec(fn):
 
 def main():
     args = parse_args()
-    with open(args.fn) as fp:
+
+    # read the xmp file list
+    with open(args.in_fn) as fp:
         fns = fp.read().splitlines()
+
+    # parse the labels from each xmp file
     columns, data = xmp_extract(fns)
-    df = pd.DataFrame(np.empty(shape=(len(data), len(DESIRED_FIELDS))), columns=DESIRED_FIELDS["field"])
-    for i, (c, d) in enumerate(zip(columns, data)):
-        df.loc[i, c] = d
+
+    # form a DataFrame of all the labels
+    #df = pd.DataFrame(np.empty(shape=(len(data), len(DESIRED_FIELDS))), columns=DESIRED_FIELDS["field"])
+    #for i, (c, d) in enumerate(zip(columns, data)):
+    #    df.loc[i, c] = d
 
     # convert the data types
     columns, data = convert_types(df)
     df = pd.DataFrame(data).transpose()
     df.columns = columns
-    import pdb; pdb.set_trace()
+    df['fn'] = fns
+    df.to_csv(args.out_fn)
 
 
 def parse_args():
     parser = ArgumentParser()
-    parser.add_argument("-f", "--file", dest="fn", help="Path to a file which contains a list of XMP files to parse (one per line).")
+    parser.add_argument("-f", "--in_file", dest="in_fn", help="Path to a file which contains a list of XMP files to parse (one per line).")
+    parser.add_argument("-o", "--out_file", dest="out_fn", help="Path to where the parsed labels should be written to.")
     return parser.parse_args()
 
 
