@@ -1,4 +1,6 @@
+keras
 numpy
 pandas
+tqdm
 python-xmp-toolkit
 matplotlib
