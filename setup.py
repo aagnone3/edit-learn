@@ -27,7 +27,7 @@ data_files = ['README.rst']  # + glob('conf/*')
 setup(
     name="img-edit-learn",
     version=__version__,
-    description="Machine learning for Personalized Image Editing",
+    description="Machine Learning for Personalized Image Editing",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 2.7",
