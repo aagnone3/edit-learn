@@ -5,7 +5,6 @@ import os
 from abc import ABCMeta
 
 import pandas as pd
-import numpy as np
 
 
 def extension(fn):
@@ -93,7 +92,7 @@ class BatchFileHandler(object):
 
 class BatchFileReader(BatchFileHandler):
     """
-    Reads files into a DataFrame in a batchd fashion.
+    Reads files into a DataFrame in a batched fashion.
     """
     READ_FUNCS = {
         ".pkl": pd.read_pickle,
@@ -111,13 +110,13 @@ class BatchFileReader(BatchFileHandler):
         """read"""
         return self.join_func([
             self.read_func(fn)
-            for fn in fns
+            for fn in self.fns
         ])
 
 
 class BatchFileWriter(BatchFileHandler):
     """
-    Writes a DataFrame to files in a batchd fashion.
+    Writes a DataFrame to files in a batched fashion.
     """
     WRITE_FUNCS = {
         ".pkl": pd.DataFrame.to_pickle,

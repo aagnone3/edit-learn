@@ -107,6 +107,17 @@ def select_labels(df, target_types):
     return labels_data
 
 
+def to_lookup(tok):
+    """to_lookup
+
+    :param tok:
+    """
+    pos = tok.find("_")
+    if pos > -1:
+        return tok[:pos]
+    return tok
+
+
 def build_model(X, y, target_type):
     """build_model
 
@@ -130,10 +141,14 @@ def build_model(X, y, target_type):
     grid_search = clf.named_steps["clf"]
     clf.fit(X_train, y_train)
     y_pred_train = clf.predict(X_train)
-    print("Train {metric_name}: {metric_value}".format(metric_name=metric_name, metric_value=metric_func(y_train, y_pred_train)))
+    print("Train {metric_name}: {metric_value}".format(
+        metric_name=metric_name, metric_value=metric_func(y_train, y_pred_train))
+    )
 
     y_pred = clf.predict(X_test)
-    print("Test {metric_name}: {metric_value}".format(metric_name=metric_name, metric_value=metric_func(y_test, y_pred)))
+    print("Test {metric_name}: {metric_value}".format(
+        metric_name=metric_name, metric_value=metric_func(y_test, y_pred))
+    )
     sns.jointplot(x=y_test, y=y_pred, kind="reg")
     desired_columns = ["mean_test_score", "mean_train_score"] +\
         list(filter(lambda c: "param_" in c, grid_search.cv_results_.keys())) +\
@@ -142,30 +157,8 @@ def build_model(X, y, target_type):
     return results
 
 
-def parse_args():
-    """parse_args
-    """
-    parser = ArgumentParser()
-    parser.add_argument('-i', '--input-file', dest='input_file',
-                        help='Input data to train on.')
-    args = parser.parse_args()
-    return args
-
-
-def to_lookup(tok):
-    """to_lookup
-
-    :param tok:
-    """
-    pos = tok.find("_")
-    if pos > -1:
-        return tok[:pos]
-    return tok
-
-
-def train_models():
-    args = parse_args()
-    df = pd.read_csv(args.input_file)
+def train_models(input_fn):
+    df = pd.read_csv(input_fn)
     target_types = parse_target_types().replace("binary", "categorical")
 
     # prep features
@@ -180,6 +173,18 @@ def train_models():
     ]
 
 
-if __name__ == '__main__':
-    train_models()
+def parse_args():
+    """parse_args
+    """
+    parser = ArgumentParser()
+    parser.add_argument('-i', '--input-file', dest='input_file',
+                        help='Input data to train on.')
+    args = parser.parse_args()
+    return args
 
+
+def cli():
+    if __name__ == '__main__':
+        args = parse_args()
+        train_models(args.input_file)
+cli()

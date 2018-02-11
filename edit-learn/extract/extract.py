@@ -28,8 +28,8 @@ def get_lines(fn):
     return lines
 
 
-def remove_ext(fn):
-    """remove_ext
+def remove_extension(fn):
+    """remove_extension
 
     :param fn:
     """
@@ -74,8 +74,8 @@ def extract():
 
     # merge the two DataFrames by their file name (with extension removed)
     merge_col = 'fn_trunc'
-    xmp_df[merge_col] = xmp_df['fn'].map(remove_ext)
-    embedding_df[merge_col] = embedding_df['fn'].map(remove_ext)
+    xmp_df[merge_col] = xmp_df['fn'].map(remove_extension)
+    embedding_df[merge_col] = embedding_df['fn'].map(remove_extension)
     del embedding_df['fn']
     main_df = xmp_df.merge(embedding_df, how='inner', on=merge_col)
     del main_df[merge_col]
