@@ -13,7 +13,7 @@ setup(
     author="Anthony Agnone",
     author_email="anthonyagnone@gmail.com",
     license="MIT",
-    packages=["img-edit-learn"],
+    packages=["ielearn"],
     zip_safe=False,
     include_package_data=True
 )
