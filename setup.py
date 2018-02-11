@@ -1,8 +1,32 @@
-from setuptools import setup
+from glob import glob
+from pkg_resources import parse_version
+from setuptools import setup, find_packages
+
+# Read requirements
+with open('requirements.txt', 'r') as fh:
+    requirements = [str(x).strip() for x in fh.readlines()]
+
+# Read from and write to the version file
+fn = "ielearn/_version.py"
+with open(fn, 'r+') as fh:
+    version_found = False
+    while not version_found:
+        vpos = fh.tell()
+        line = fh.readline()
+        if line == '':
+            # reached EOF without finding the version
+            # End of file
+            raise ValueError("Could not find __version__ in %s." % fn)
+        elif line.startswith('__version__'):
+            exec line
+            version_found = True
+
+# Get list of data files
+data_files = ['README.rst']  # + glob('conf/*')
 
 setup(
     name="img-edit-learn",
-    version="0.1",
+    version=__version__,
     description="Machine learning for Personalized Image Editing",
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -12,8 +36,8 @@ setup(
     url="https://github.com/aagnone3/img-edit-learn",
     author="Anthony Agnone",
     author_email="anthonyagnone@gmail.com",
-    license="MIT",
-    packages=["ielearn"],
+    packages=find_packages(exclude=['*.test', 'test']),
+    install_requires=requirements,
     zip_safe=False,
-    include_package_data=True
+    data_files=[('share/aagnone/ielearn', data_files)]
 )
