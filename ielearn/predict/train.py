@@ -30,15 +30,15 @@ def select_features(df, target_types):
 
     :param df:
     """
-    print("{} samples".format(df.shape[0]))
+    print(("{} samples".format(df.shape[0])))
     embedding_cols = ["F{}".format(i + 1) for i in range(512)]
     exif_cols = [col for col in df.columns if "exif" in col]
     feature_cols = embedding_cols + exif_cols
     features = df.loc[:, feature_cols]
 
-    print("{} embedding features".format(len(embedding_cols)))
-    print("{} exif data features".format(len(exif_cols)))
-    print("{} features".format(features.shape[1]))
+    print(("{} embedding features".format(len(embedding_cols))))
+    print(("{} exif data features".format(len(exif_cols))))
+    print(("{} features".format(features.shape[1])))
 
     # transform exif features using one-hot or standardization
     #for col in exif_cols:
@@ -47,10 +47,10 @@ def select_features(df, target_types):
     #        new_features = binarizer.fit(features[col])
 
     null_mask = features.isnull().sum() > 0
-    print("Removing {} features with more than 0 null values.".format(len(null_mask[null_mask])))
+    print(("Removing {} features with more than 0 null values.".format(len(null_mask[null_mask]))))
     features = features.loc[:, ~null_mask]
 
-    print("Finalized {} features".format(features.shape[1]))
+    print(("Finalized {} features".format(features.shape[1])))
     return features
 
 
@@ -62,16 +62,16 @@ def select_labels(df, target_types):
     """
     label_cols = [col for col in df.columns if "crs" in col]
     labels = df.loc[:, label_cols]
-    print("Started with {} labels".format(labels.shape[1]))
+    print(("Started with {} labels".format(labels.shape[1])))
 
     no_tone_curve_cols = [col for col in labels.columns if "ToneCurve" not in col]
-    print("\nRemoving {} tone curve labels.".format(len(no_tone_curve_cols)))
+    print(("\nRemoving {} tone curve labels.".format(len(no_tone_curve_cols))))
     labels = labels.loc[:, labels.columns.isin(no_tone_curve_cols)]
 
     MIN_VAR = 0.001
     low_var = RobustScaler().fit_transform(labels).var(axis=0) < MIN_VAR
-    print("\nRemoving {} labels with small variance.".format(len(low_var[low_var])))
-    print(labels.columns[low_var])
+    print(("\nRemoving {} labels with small variance.".format(len(low_var[low_var]))))
+    print((labels.columns[low_var]))
     labels = labels.loc[:, ~low_var]
 
     # consider converting numerical to categorical for outputs with a small number of unique values
@@ -85,7 +85,7 @@ def select_labels(df, target_types):
         if n_unique < CATEG_NUMER_THRESH:
             n_convert += 1
             labels_data[col]["type"] = "categorical"
-            print("\t{}: {}".format(col, n_unique))
+            print(("\t{}: {}".format(col, n_unique)))
         else:
             labels_data[col]["type"] = target_types[to_lookup(col)]
 
@@ -98,11 +98,11 @@ def select_labels(df, target_types):
         else:
             labels_data[col]["data"] = labels[col]
 
-    print("Converted {n_classes} labels to categorical.".format(n_classes=n_convert))
-    print("\nFinalized {} labels".format(len(labels_data)))
-    print(Counter(
-        [d["type"] for d in labels_data.values()]
-    ))
+    print(("Converted {n_classes} labels to categorical.".format(n_classes=n_convert)))
+    print(("\nFinalized {} labels".format(len(labels_data))))
+    print((Counter(
+        [d["type"] for d in list(labels_data.values())]
+    )))
 
     return labels_data
 
@@ -141,18 +141,18 @@ def build_model(X, y, target_type):
     grid_search = clf.named_steps["clf"]
     clf.fit(X_train, y_train)
     y_pred_train = clf.predict(X_train)
-    print("Train {metric_name}: {metric_value}".format(
+    print(("Train {metric_name}: {metric_value}".format(
         metric_name=metric_name, metric_value=metric_func(y_train, y_pred_train))
-    )
+    ))
 
     y_pred = clf.predict(X_test)
-    print("Test {metric_name}: {metric_value}".format(
+    print(("Test {metric_name}: {metric_value}".format(
         metric_name=metric_name, metric_value=metric_func(y_test, y_pred))
-    )
+    ))
     sns.jointplot(x=y_test, y=y_pred, kind="reg")
     desired_columns = ["mean_test_score", "mean_train_score"] +\
-        list(filter(lambda c: "param_" in c, grid_search.cv_results_.keys())) +\
-        list(filter(lambda c: "rank" in c, grid_search.cv_results_.keys()))
+        list([c for c in list(grid_search.cv_results_.keys()) if "param_" in c]) +\
+        list([c for c in list(grid_search.cv_results_.keys()) if "rank" in c])
     results = pd.DataFrame.from_dict(grid_search.cv_results_).loc[:, desired_columns].sort_values("rank_test_score")
     return results
 
@@ -168,7 +168,7 @@ def train_models(input_fn):
     labels_data = select_labels(df, target_types)
     results = [
         build_model(features, labels_dict["data"], labels_dict["type"])
-        for label, labels_dict in labels_data.items()
+        for label, labels_dict in list(labels_data.items())
         if labels_dict["type"] == 'categorical'
     ]
 

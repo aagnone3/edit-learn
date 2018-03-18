@@ -2,9 +2,10 @@
 Extract neural embeddings for all of the files specified in the passed file name list.
 """
 import os
-import logging
-import multiprocessing as mp
 import pickle
+import logging
+from tqdm import tqdm
+import multiprocessing as mp
 
 import numpy as np
 import pandas as pd
@@ -43,13 +44,8 @@ def run_extraction(fns):
     :param fns:
     """
 
-    feats = []
-    n_fns = len(fns)
-    for i, img_path in enumerate(fns):
-        logger.info("Extracting embedding from image %i/%i.", i, n_fns)
-        feats.append(extract_embedding(img_path))
     df = pd.DataFrame(
-        feats,
+        [extract_embedding(fn) for fn in tqdm(fns)],
         columns=["F{}".format(i+1) for i in range(OUTPUT_DIMENSION)]
     )
     df['fn'] = fns
