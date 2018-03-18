@@ -47,7 +47,7 @@ def parse_floats(s):
 
     :param s:
     """
-    if isinstance(s, (str, unicode)):
+    if isinstance(s, str):
         if "/" in s:
             # parse a ratio to its float value
             num, den = s.split("/")
@@ -116,7 +116,7 @@ def convert_types(df, type_map):
     data = []
     data_fields = []
     logging.info("Converting data types for the parsed XMP data.")
-    for column in tqdm(df.data_fields):
+    for column in tqdm(df.columns):
         dtype = type_map.get(column, None)
         if not dtype:
             raise TypeError("Unexpected type {} for property {}".format(dtype, column))

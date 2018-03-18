@@ -4,7 +4,7 @@ Extract neural embeddings for all of the files specified in the passed file name
 import os
 import logging
 import multiprocessing as mp
-import cPickle as pickle
+import pickle
 
 import numpy as np
 import pandas as pd

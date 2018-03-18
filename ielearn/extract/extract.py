@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 import numpy as np
 import pandas as pd
 
-from edit_learn.extract import (
+from ielearn.extract import (
     embedding,
     xmp
 )

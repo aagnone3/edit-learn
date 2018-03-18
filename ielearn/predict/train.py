@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier, Grad
 from sklearn.model_selection import StratifiedShuffleSplit, train_test_split, GridSearchCV
 from sklearn.metrics import r2_score, mean_squared_error, f1_score, accuracy_score
 
-from edit_learn.extract.xmp import parse_target_types
+from ielearn.extract.xmp import parse_target_types
 
 sns.set(color_codes=True)
 FN_DESIRED_FIELDS = os.path.join("..", "extract", "res", "desired_fields")

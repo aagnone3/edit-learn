@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # argument parsing
 N_ARGS=2
@@ -32,40 +32,41 @@ validate_xmp() {
             (echo ${XMP_HEADER}; cat "${fn}"; echo ${XMP_FOOTER};) > ${TMP_FILE}
             mv ${TMP_FILE} "${fn}"
         }
+        return 0
     } || {
         return 1
     }
 }
 
-grep -i xmp ${file_list} > ${XMP_LIST_FN}
-n_xmp=$(cat ${XMP_LIST_FN} | wc -l)
-[ "${n_xmp}" -eq "0" ] && {
-    echo "ERROR: No XMP files found in ${XMP_LIST_FN}."
-    exit
-} || {
-    echo "# XMP files found: ${n_xmp}"
-}
-grep -i nef ${file_list} > ${NEF_LIST_FN}
-n_nef=$(cat ${NEF_LIST_FN} | wc -l)
-[ "${n_nef}" -eq "0" ] && {
-    echo "ERROR: No NEF files found in ${NEF_LIST_FN}."
-    exit
-} || {
-    echo "# NEF files found: ${n_nef}"
-}
-
-# validate the XMP files
-while read -r fn; do
-    validate_xmp "${fn}"
-    [ "$?" -ne "0" ] && {
-        echo "EROR: File "${fn}". does not exist."
-    }
-done < ${XMP_LIST_FN}
+#grep -i xmp ${file_list} > ${XMP_LIST_FN}
+#n_xmp=$(cat ${XMP_LIST_FN} | wc -l)
+#[ "${n_xmp}" -eq "0" ] && {
+#    echo "ERROR: No XMP files found in ${XMP_LIST_FN}."
+#    exit
+#} || {
+#    echo "# XMP files found: ${n_xmp}"
+#}
+#grep -i nef ${file_list} > ${NEF_LIST_FN}
+#n_nef=$(cat ${NEF_LIST_FN} | wc -l)
+#[ "${n_nef}" -eq "0" ] && {
+#    echo "ERROR: No NEF files found in ${NEF_LIST_FN}."
+#    exit
+#} || {
+#    echo "# NEF files found: ${n_nef}"
+#}
+#
+## validate the XMP files
+#echo "Validating XMP files."
+#while read -r fn; do
+#    validate_xmp "${fn}"
+#    [ "$?" -ne "0" ] && {
+#        echo "EROR: File "${fn}". does not exist."
+#    }
+#done < ${XMP_LIST_FN}
 
 # perform label extraction on the XMP files
+echo "Extracting labels from XMP files."
 python ${EXTRACT_LABELS_SCRIPT} -i ${NEF_LIST_FN} -x ${XMP_LIST_FN} -o ${out_fn}
-rc=$?
-[ "${rc}" -ne 0 ] && {
+[ "$?" -ne 0 ] && {
     echo "ERROR: Dataset extraction failed with exit code ${rc}."
 }
-
