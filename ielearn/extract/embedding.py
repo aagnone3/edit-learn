@@ -14,7 +14,7 @@ from keras.applications.vgg16 import VGG16
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.vgg16 import preprocess_input
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("IMG-EDIT-LEARN")
 logging.basicConfig(level=logging.INFO)
 
 INPUT_SHAPE = (224, 224, 3)
@@ -43,6 +43,7 @@ def run_extraction(fns):
 
     :param fns:
     """
+    logger.info("Extracting neural embeddings from {} NEF images.".format(len(fns)))
 
     df = pd.DataFrame(
         [extract_embedding(fn) for fn in tqdm(fns)],

@@ -1,13 +1,17 @@
 from glob import glob
+from os import path
 from pkg_resources import parse_version
 from setuptools import setup, find_packages
 
+ROOT_DIR = path.dirname(__file__)
+
 # Read requirements
-with open('requirements.txt', 'r') as fh:
+fn = path.join(ROOT_DIR, 'requirements.txt')
+with open(fn, 'r') as fh:
     requirements = [str(x).strip() for x in fh.readlines()]
 
 # Read from and write to the version file
-fn = "ielearn/_version.py"
+fn = path.join(ROOT_DIR, "ielearn", "_version.py")
 with open(fn, 'r+') as fh:
     version_found = False
     while not version_found:

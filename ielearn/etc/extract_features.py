@@ -13,7 +13,7 @@ from keras.applications.vgg16 import VGG16
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.vgg16 import preprocess_input
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("IMG-EDIT-LEARN")
 logging.basicConfig(level=logging.INFO)
 INPUT_SHAPE = (224, 224, 3)
 MODEL = VGG16(
