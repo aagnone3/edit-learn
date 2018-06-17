@@ -1,21 +1,29 @@
 language: python
 
 python:
-    - "3.5"
+    - '3.5'
 
 env:
     global:
         - TEST_DIR=/tmp/module_testing
+        - REPO=img-edit-learn
         - MODULE=ielearn
 
+# TODO install in a Docker container
+addons:
+    apt:
+        packages:
+            - libexempi3
+
 install:
-    source .travis/install.sh
+    - source .travis/install.sh
 
 script:
-    bash .travis/test.sh
+    - bash .travis/test.sh
 
 after_success:
-    source .travis/after_success.sh
+    - source .travis/upload_test_coverage.sh
+    - source .travis/generate_docs.sh
 
 notifications:
     email:
@@ -23,3 +31,12 @@ notifications:
             - anthonyagnone@gmail.com
         on_success: never
         on_failure: always
+
+deploy:
+    provider: pages
+    skip_cleanup: true
+    keep_history: true
+    on:
+        branch: master
+    local_dir: docs/_build/html
+    #secure: "f1MSKfXYCg1poWjpLEQIfoQ3qmBihBzuQ0ZYF6+QPCEktTPs7idVwKAU/Oz+YgkccRvgXGlmZPEWU6cBuwf+pATXZ9p8WmPwOum3RV5L9EjOY7Zj/vDx5lAGspKKwBpCG0sLsqMW/mU3RyT1D8tOP3oTeYD/mRlYU0ggpQNUnNNvMok3CfaxU97P7id13OhZDKOMLU4LXxBorLxuJ/iVDEF6k/A20v504snL2oVz8stI6zcVT4aw0v7E2sS6TyN8rDDi+9GVrDLhWfK1kJju7fWm9q/QmB4VnuOKtFUiDngZ3obytp8BXj7k7FyqUJzID+5I622xuHZUL+hJsM3DkaJEDsKpgKj1Eote7wVzhge8pkdNV9fYOV18Dc8/UClpPTXVLFDFcbx/aQZOT4hnsA5SXj12yb3ZGq72JECP1PoBnNt9lckUkNxST2B1ISUdRELHQckvRz4NAwxdCldWehhMOVdV6uQRvuoiBlJHNBwnQ/6++UdQEeQ9GvbhLwlXhZNwb7nzhW8m/YAOWbl+nw8wEPqjBJReSA88hT4nWrCRkiunMpqx7pXuWuRpIpb6WTWe83JhtnZR1RLcGQ+GulSi+KI9gnRhNUAXWZumQpXkARGLRLjaRbON9brPexKDkwVnXMw3GgHfpopoIdaaDhzLay0OpLYIV3+fxgW2DYY="

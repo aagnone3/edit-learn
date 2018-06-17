@@ -157,11 +157,11 @@ def demo():
     # batch read
     from glob import glob
     data = BatchFileIO('r', glob("*.pkl")).read()
-    print data.shape
+    # print data.shape
 
     # batch write
     BatchFileIO('w', 'new_file.pkl').write(data)
-    print os.path.exists('new_file.pkl')
+    # print os.path.exists('new_file.pkl')
 
 
 if __name__ == '__main__':
