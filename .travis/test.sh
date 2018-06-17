@@ -16,7 +16,7 @@ function do_test() {
     ls
     env
     cd ${TEST_DIR}
-    py.test "${PYTEST_OPTIONS[@]}" .
+    py.test "${PYTEST_OPTIONS[@]}" ${TRAVIS_BUILD_DIR}
     [[ -f ${COVERAGE_FILE} ]] && cp ${COVERAGE_FILE} ${TRAVIS_BUILD_DIR} || echo "Warning: code coverage file not available."
     cd ${OLDPWD}
 }
