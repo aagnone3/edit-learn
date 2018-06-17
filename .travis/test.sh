@@ -11,15 +11,20 @@ function ensure_clean_test_dir() {
 }
 
 function do_test() {
-    export PYTHONPATH=${PYTHONPATH}:${TRAVIS_BUILD_DIR}
-    echo "PYTHONPATH: ${PYTHONPATH}"
-    ls
-    env
     cd ${TEST_DIR}
-    py.test "${PYTEST_OPTIONS[@]}" ${TRAVIS_BUILD_DIR}
-    [[ -f ${COVERAGE_FILE} ]] && cp ${COVERAGE_FILE} ${TRAVIS_BUILD_DIR} || echo "Warning: code coverage file not available."
-    cd ${OLDPWD}
+    PYTHONPATH=${PYTHONPATH}:${TRAVIS_BUILD_DIR} py.test "${PYTEST_OPTIONS[@]}" ${TRAVIS_BUILD_DIR}
+}
+
+function upload_coverage() {
+    cd ${TRAVIS_BUILD_DIR}
+    [[ -f ${COVERAGE_FILE} ]] && {
+        cp ${COVERAGE_FILE} ${TRAVIS_BUILD_DIR}
+        codecov || echo "Warning: code coverage upload failed."
+    } || {
+        echo "Warning: code coverage file not available."
+    }
 }
 
 ensure_clean_test_dir
 do_test
+upload_coverage
