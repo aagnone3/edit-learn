@@ -4,10 +4,15 @@ python:
 env:
   global:
   - TEST_DIR=/tmp/module_testing
+  - REPO=img-edit-learn
   - MODULE=ielearn
-install: source .travis/install.sh
-script: bash .travis/test.sh
-after_success: source .travis/after_success.sh
+install:
+    - source .travis/install.sh
+script:
+    - bash .travis/test.sh
+after_success:
+    - source .travis/upload_test_coverage.sh
+    - source .travis/generate_docs.sh
 notifications:
   email:
     recipients:
