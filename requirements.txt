@@ -1,0 +1,8 @@
+keras
+numpy
+pandas
+tqdm
+python-xmp-toolkit
+tensorflow
+scikit-learn>=0.16.1
+matplotlib
