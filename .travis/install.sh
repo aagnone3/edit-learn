@@ -1,15 +1,9 @@
 #!/bin/bash
 set -e
 
-# update pip
-pip install --upgrade pip
-
-# install package dependencies
-#pip install -r requirements.txt
-
 # install test dependencies
+pip install --upgrade pip
 pip install pytest pytest-cov codecov sphinx
 
-echo $PWD
-ls
+# install the package
 pip install .
