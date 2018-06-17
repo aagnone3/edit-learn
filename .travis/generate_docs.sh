@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-MODULE_DIR=${TRAVIS_BUILD_DIR}/${REPO}
-DOCS_BASE_DIR=${REPO}/docs
+MODULE_DIR=${TRAVIS_BUILD_DIR}/${MODULE}
+DOCS_BASE_DIR=${TRAVIS_BUILD_DIR}/docs
 
 function error_out() {
     echo ${1}
