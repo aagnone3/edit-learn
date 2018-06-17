@@ -14,7 +14,6 @@
 .. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/img-edit-learn.svg
 .. _PythonVersion: https://img.shields.io/pypi/pyversions/img-edit-learn.svg
 
-
 img-edit-learn
 ================
 
