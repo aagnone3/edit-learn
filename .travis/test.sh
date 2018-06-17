@@ -11,6 +11,10 @@ function ensure_clean_test_dir() {
 }
 
 function do_test() {
+    export PYTHONPATH=${PYTHONPATH}:${TRAVIS_BUILD_DIR}
+    echo "PYTHONPATH: ${PYTHONPATH}"
+    ls
+    env
     cd ${TEST_DIR}
     py.test "${PYTEST_OPTIONS[@]}" .
     [[ -f ${COVERAGE_FILE} ]] && cp ${COVERAGE_FILE} ${TRAVIS_BUILD_DIR} || echo "Warning: code coverage file not available."
