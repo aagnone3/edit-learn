@@ -20,5 +20,5 @@ notifications:
     email:
         recipients:
             - anthonyagnone@gmail.com
-        on_success: always
+        on_success: never
         on_failure: always
