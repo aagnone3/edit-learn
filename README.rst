@@ -1,5 +1,20 @@
 .. -*- mode: rst -*-
 
+|Travis|_ |PyPi|_ |TestStatus|_ |PythonVersion|_
+
+.. |Travis| image::
+.. _Travis: https://travis-ci.org/aagnone3/img-edit-learn
+
+.. |PyPi| image:: https://badge.fury.io/py/img-edit-learn.svg
+.. _PyPi: https://badge.fury.io/py/img-edit-learn
+
+.. |TestStatus| image:: https://travis-ci.org/aagnone3/img-edit-learn.svg
+.. _TestStatus: https://travis-ci.org/aagnone3/img-edit-learn.svg
+
+.. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/img-edit-learn.svg
+.. _PythonVersion: https://img.shields.io/pypi/pyversions/img-edit-learn.svg
+
+
 img-edit-learn
 ================
 
@@ -16,9 +31,6 @@ Documentation
 -------------
 
 Coming soon.
-
-Installation
-------------
 
 Dependencies
 ~~~~~~~~~~~~
