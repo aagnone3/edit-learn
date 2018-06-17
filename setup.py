@@ -22,7 +22,7 @@ with open(fn, 'r+') as fh:
             # End of file
             raise ValueError("Could not find __version__ in %s." % fn)
         elif line.startswith('__version__'):
-            exec line
+            exec(line)
             version_found = True
 
 # Get list of data files
