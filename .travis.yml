@@ -6,7 +6,7 @@ python:
 env:
     global:
         - TEST_DIR=/tmp/module_testing
-        - MODULE=img-edit-learn
+        - MODULE=ielearn
 
 install: source .travis/install.sh
 script: bash .travis/test.sh
