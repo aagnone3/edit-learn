@@ -9,6 +9,11 @@ env:
         - REPO=img-edit-learn
         - MODULE=ielearn
 
+addons:
+    apt:
+        packages:
+            - libexempi3
+
 install:
     - source .travis/install.sh
 
