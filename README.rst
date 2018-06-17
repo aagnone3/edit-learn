@@ -2,7 +2,7 @@
 
 |Travis|_ |PyPi|_ |TestStatus|_ |PythonVersion|_
 
-.. |Travis| image::
+.. |Travis| image:: https://travis-ci.org/aagnone3/img-edit-learn.svg?branch=master
 .. _Travis: https://travis-ci.org/aagnone3/img-edit-learn
 
 .. |PyPi| image:: https://badge.fury.io/py/img-edit-learn.svg
