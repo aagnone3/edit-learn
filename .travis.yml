@@ -1,7 +1,25 @@
+dist: trusty
+sudo: false
+
 language: python
+
+services:
+    - docker
+
+# public environment variables
+env:
+    - SH=bash
 
 python:
   - "3.5"
+
+before_install:
+      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+              - sudo apt-get update
+                  - sudo apt-get -y install docker-ce
+    # build the docker
+    - docker build -t test .
 
 install:
   # up-to-date pip
@@ -17,5 +35,8 @@ script:
   - "./.travis/test.sh"
 
 notifications:
-  email: false
-
+  email:
+      recipients:
+          - anthonyagnone@gmail.com
+    on_success: always
+    on_failure: always
