@@ -3,6 +3,11 @@ language: python
 python:
     - "3.5"
 
+env:
+    global:
+        - TEST_DIR=/tmp/module_testing
+        - MODULE=img-edit-learn
+
 install:
     # up-to-date pip
     - pip install --upgrade pip

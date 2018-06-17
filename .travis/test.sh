@@ -1,12 +1,8 @@
-#! /bin/bash
+#!/bin/bash
+set -e
 
-# vars
-PYTEST_OPTIONS=-xvs
-TEST_DIR=test
+PYTEST_OPTIONS=(--cov=${MODULE} -xvs --pyargs ${MODULE})
+COVERAGE_FILE=${TEST_DIR}/.coverage
 
-# add the package's root directory to the PYTHONPATH
-export PYTHONPATH=${TRAVIS_BUILD_DIR}
-
-# invocation
-py.test ${PYTEST_OPTIONS} ${TEST_DIR}
-
+py.test "${PYTEST_OPTIONS[@]}" .
+cp ${COVERAGE_FILE} ${TRAVIS_BUILD_DIR}
