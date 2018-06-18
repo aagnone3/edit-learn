@@ -37,7 +37,7 @@ deploy:
     skip-cleanup: true
     keep-history: true
     github-token: ${GITHUB_TOKEN}
-    target-branch: master
+    target-branch: gh-pages
     local-dir: docs/build/html
     on:
         branch: master
