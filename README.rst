@@ -35,29 +35,40 @@ Dependencies
 ~~~~~~~~~~~~
 
 img-edit-learn is tested to work under Python 2.7.
-See the requirements via the following command::
+See the requirements via the following command:
+
+.. code-block:: bash
+
   cat requirements.txt
 
 Installation
 ~~~~~~~~~~~~
 
 img-edit-learn is currently available on the PyPi's repository and you can
-install it via `pip`::
+install it via `pip`:
+
+.. code-block:: bash
 
   pip install -U img-edit-learn
 
 If you prefer, you can clone it and run the setup.py file. Use the following
-commands to get a copy from GitHub and install all dependencies::
+commands to get a copy from GitHub and install all dependencies:
+
+.. code-block:: bash
 
   git clone https://github.com/aagnone3/img-edit-learn.git
   cd img-edit-learn
   pip install .
 
-Or install using pip and GitHub::
+Or install using pip and GitHub:
+
+.. code-block:: bash
 
   pip install -U git+https://github.com/aagnone3/img-edit-learn.git
 
 Testing
 ~~~~~~~
 
-TODO
+.. code-block:: bash
+
+  make test
