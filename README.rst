@@ -49,20 +49,15 @@ install it via `pip`::
 If you prefer, you can clone it and run the setup.py file. Use the following
 commands to get a copy from GitHub and install all dependencies::
 
-  git clone https://github.com/scikit-learn-contrib/img-edit-learn.git
+  git clone https://github.com/aagnone3/img-edit-learn.git
   cd img-edit-learn
   pip install .
 
 Or install using pip and GitHub::
 
-  pip install -U git+https://github.com/aagnone/img-edit-learn.git
+  pip install -U git+https://github.com/aagnone3/img-edit-learn.git
 
 Testing
 ~~~~~~~
-
-TODO
-
-About
------
 
 TODO

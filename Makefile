@@ -29,3 +29,7 @@ pypi_test: build
 .PHONY: pypi
 pypi: build bump_version
 	twine upload dist/*
+
+.PHONY: test
+test:
+	PYTHONPATH=${PYTHONPATH}:${PWD}/${MODULE_NAME} py.test -v
