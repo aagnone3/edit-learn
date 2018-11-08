@@ -2,7 +2,7 @@ from os import path
 from setuptools import setup, find_packages
 
 MODULE_NAME = "ielearn"
-VERSION_FN = path.join(MODULE_NAME, "_version.py")
+VERSION_FN = path.join(MODULE_NAME, "version.py")
 REQUIREMENTS_FN = path.join(path.dirname(__file__), 'requirements.txt')
 
 # Read requirements
