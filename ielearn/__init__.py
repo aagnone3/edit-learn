@@ -1,1 +1,1 @@
-from version import __version__
+from ielearn.version import __version__
