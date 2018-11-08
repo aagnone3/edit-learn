@@ -19,7 +19,7 @@ img-edit-learn
 
 img-edit-learn is a python package offering a machine learning pipeline to
 automate Adobe Lightroom edits to images, based on past edits. At a high-level,
-the tool pairs image embeddings with image edits to learn edits based on the embeddings.
+the tool pairs image embeddings with image edits to learn the post-processing edits that a user normally makes.
 
 Currently, the embeddings are extracted using the VGG16_ convolutional neural network (CNN),
 and the edits are parsed from standard Adobe Lighroom XMP files.
@@ -29,7 +29,9 @@ and the edits are parsed from standard Adobe Lighroom XMP files.
 Documentation
 -------------
 
-Coming soon.
+Documentation can be found at the github pages here_
+
+.. _here: https://aagnone3.github.io/img-edit-learn/
 
 Dependencies
 ~~~~~~~~~~~~
