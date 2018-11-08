@@ -1,0 +1,10 @@
+bin
+include
+lib
+.DS_Store
+*.pyc
+__pycache__
+dist
+MANIFEST
+
+session.json
