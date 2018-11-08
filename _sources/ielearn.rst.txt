@@ -19,7 +19,7 @@ Submodules
 
 .. toctree::
 
-   ielearn._version
    ielearn.batch_io
    ielearn.util
+   ielearn.version
 

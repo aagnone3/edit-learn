@@ -1,0 +1,7 @@
+ielearn.version module
+======================
+
+.. automodule:: ielearn.version
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -13,6 +13,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -27,6 +28,8 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="module-ielearn.batch_io">
@@ -43,7 +46,7 @@
 
 <dl class="attribute">
 <dt id="ielearn.batch_io.BatchFileHandler.JOIN_FUNCS">
-<code class="descname">JOIN_FUNCS</code><em class="property"> = {'.csv': &lt;function concat at 0x151b10c491e0&gt;, '.pkl': &lt;function concat at 0x151b10c491e0&gt;}</em><a class="headerlink" href="#ielearn.batch_io.BatchFileHandler.JOIN_FUNCS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">JOIN_FUNCS</code><em class="property"> = {'.csv': &lt;function concat&gt;, '.pkl': &lt;function concat&gt;}</em><a class="headerlink" href="#ielearn.batch_io.BatchFileHandler.JOIN_FUNCS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -80,7 +83,7 @@
 <p>Reads files into a DataFrame in a batched fashion.</p>
 <dl class="attribute">
 <dt id="ielearn.batch_io.BatchFileReader.READ_FUNCS">
-<code class="descname">READ_FUNCS</code><em class="property"> = {'.csv': &lt;function _make_parser_function.&lt;locals&gt;.parser_f at 0x151b109d2c80&gt;, '.pkl': &lt;function read_pickle at 0x151b101a2ea0&gt;}</em><a class="headerlink" href="#ielearn.batch_io.BatchFileReader.READ_FUNCS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">READ_FUNCS</code><em class="property"> = {'.csv': &lt;function _make_parser_function.&lt;locals&gt;.parser_f&gt;, '.pkl': &lt;function read_pickle&gt;}</em><a class="headerlink" href="#ielearn.batch_io.BatchFileReader.READ_FUNCS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -97,7 +100,7 @@
 <p>Writes a DataFrame to files in a batched fashion.</p>
 <dl class="attribute">
 <dt id="ielearn.batch_io.BatchFileWriter.WRITE_FUNCS">
-<code class="descname">WRITE_FUNCS</code><em class="property"> = {'.csv': &lt;function DataFrame.to_csv at 0x151b11198400&gt;, '.pkl': &lt;function NDFrame.to_pickle at 0x151b122ef6a8&gt;}</em><a class="headerlink" href="#ielearn.batch_io.BatchFileWriter.WRITE_FUNCS" title="Permalink to this definition">¶</a></dt>
+<code class="descname">WRITE_FUNCS</code><em class="property"> = {'.csv': &lt;function DataFrame.to_csv&gt;, '.pkl': &lt;function NDFrame.to_pickle&gt;}</em><a class="headerlink" href="#ielearn.batch_io.BatchFileWriter.WRITE_FUNCS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -145,6 +148,7 @@ Subclasses of this class should define the internal classes supported.</p>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -179,6 +183,14 @@ Subclasses of this class should define the internal classes supported.</p>
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -187,8 +199,8 @@ Subclasses of this class should define the internal classes supported.</p>
       &copy;2018, Anthony Agnone.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/ielearn.batch_io.rst.txt"
