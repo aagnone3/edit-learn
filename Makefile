@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 PWD ?= $(PWD)
 
-MODULE_NAME = $(shell grep "MODULE_NAME =" setup.py | head -n1 | cut -d= -f2 | sed 's/["\s ]//g')
+MODULE_NAME = $(shell grep "module_name =" setup.cfg | head -n1 | cut -d= -f2 | sed 's/["\s ]//g')
 VERSION_FN = ${MODULE_NAME}/version.py
 
 help:
@@ -14,20 +14,31 @@ help:
 	@echo "  pypi_test     Upload the the test PyPi server"
 	@echo "  bump_version  Bump the module version"
 
+.PHONY: clean
+clean:
+	rm -rf build/* dist/* *egg-info*
+
 .PHONY: build
-build:
+build: clean
 	python setup.py sdist bdist_wheel
 
 .PHONY: bump_version
 bump_version:
 	bin/bump_version ${VERSION_FN} --minor
 
+.PHONY: bump_version_major
+bump_version_minor: bump_version
+
+.PHONY: bump_version_major
+bump_version_major:
+	bin/bump_version ${VERSION_FN} --major
+
 .PHONY: pypi_test
 pypi_test: build
 	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 .PHONY: pypi
-pypi: build bump_version
+pypi: build
 	twine upload dist/*
 
 .PHONY: test
